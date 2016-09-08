@@ -94,6 +94,15 @@ for(loop in 1:n_loops){
 
 #We already averaged over contexts and can just use: between_percontrastspeaker, within_percontrastspeaker
 
+within_percontrast = within_percontrastspeaker %>%
+  group_by(contrasts) %>%
+  summarise(mean_score = mean(mean_score_temp)) %>%
+  ungroup() 
+
+between_percontrast = between_percontrastspeaker %>%
+  group_by(contrasts) %>%
+  summarise(mean_score = mean(mean_score_temp)) %>%
+  ungroup() 
 
 #We want to randomly subsample separately for the within and across speaker condition. 
 
@@ -112,8 +121,19 @@ for(loop in 1:n_loops_contrast){
 }
 
 
-
 #within_ci = quantile(within_results, probs = c(.05, .95))
 #between_ci = quantile(between_results, probs = c(.05, .95))
 
 #diff_ci = quantile(diff_results, probs = c(.05, .95))
+
+#### Goal: Get CI for each speaker ####
+
+within_perspeaker = within_percontrastspeaker %>%
+  group_by(speakerpairs) %>%
+  summarise(mean_score = mean(mean_score_temp)) %>%
+  ungroup() 
+
+between_perspeaker = between_percontrastspeaker %>%
+  group_by(speakerpairs) %>%
+  summarise(mean_score = mean(mean_score_temp)) %>%
+  ungroup() 
