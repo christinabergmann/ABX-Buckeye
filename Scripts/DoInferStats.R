@@ -30,11 +30,12 @@ both=data.frame(both)
 whole=lm(mean_score_temp~contrasts+speakerpairs,data=both)
 contrast_only=lm(mean_score_temp~contrasts,data=both)
 speakers_only=lm(mean_score_temp~speakerpairs,data=both)
-anova(whole,contrast_only)
-anova(whole,speakers_only)
+anova(whole,contrast_only) # 130.44
+anova(whole,speakers_only) # 142.03
 summary(contrast_only) #contrast ID explains 53% of the variance
 summary(speakers_only) #speaker ID explains 16% of the variance  - 4x less !!
 #and notice that this includes both individual variability and that related to within vs across
-summary(whole) #the model with both explains 48% of the variance 
+summary(whole) #the model with both explains 70% of the variance 
+
 
 write.table(both,"Supplementary/both_buckeye.txt",row.names=F,sep="\t")
