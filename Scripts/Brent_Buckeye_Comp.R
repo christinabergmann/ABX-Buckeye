@@ -40,3 +40,5 @@ summary(whole) #60% of var explained
 anova(whole,wo_sp) #effect of speaker removal F 13.6
 summary(wo_sp) #51% var explained
 
+Anova(whole)
+
